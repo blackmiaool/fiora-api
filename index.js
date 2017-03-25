@@ -1,5 +1,7 @@
 class Fiora {
-    constructor(log) {
+    constructor({
+        log = true
+    }) {
         const socket = require('socket.io-client')('http://suisuijiang.com:10615/');
         this.socket = socket;
         this.name = "fiora";
@@ -115,7 +117,6 @@ class Fiora {
                 },
                 method: "POST",
                 path: "/group/members"
-                    //            avatar: "http://cr.mdzzapp.com/images/expressions/喷.png"
             }, (result) => {
                 if (result.status === 201) {
                     this.groupMap[groupName] = result.data._id;
