@@ -1,16 +1,22 @@
 class Fiora {
-    constructor() {
+    constructor(log) {
         const socket = require('socket.io-client')('http://suisuijiang.com:10615/');
         this.socket = socket;
+        this.name = "fiora";
 
-        socket.on('connect', function (socket) {
-            console.log("on connect");
+        this.log = (msg) => {
+            if (log) {
+                console.log(this.name + " " + msg);
+            }
+
+        }
+
+
+        socket.on('connect', (socket) => {
+            this.log("connect");
         });
-        socket.on('event', function (data) {
-            console.log('event', data);
-        });
-        socket.on('disconnect', function () {
-            console.log("disconnect");
+        socket.on('disconnect', () => {
+            this.log("disconnect");
         });
         socket.on('groupMessage', ({
             type,
@@ -24,8 +30,8 @@ class Fiora {
                 _id
             }
         }) => {
-            if(avatar.match(/\w{1,10}/)){
-                avatar=`https://ooo.0o0.ooo/2016/12/03/584253eca7025.jpeg`;
+            if (avatar.match(/\w{1,10}/)) {
+                avatar = `https://ooo.0o0.ooo/2016/12/03/584253eca7025.jpeg`;
             }
             let room;
             for (const i in this.groupMap) {
@@ -34,7 +40,6 @@ class Fiora {
                     break;
                 }
             }
-            console.log(this.groupMap, _id)
             if (!room || !this.listeners[room]) {
                 return;
             }
@@ -45,7 +50,6 @@ class Fiora {
                 name: username,
                 time: (new Date(createTime)).getTime()
             }
-            console.log(message);
             this.listeners[room].forEach(function (cb) {
                 cb(message);
             });
@@ -94,7 +98,6 @@ class Fiora {
                 data,
                 status
             }) => {
-                console.log("data",data,status)
                 if (status === 201) {
                     resolve();
                 } else {
@@ -114,7 +117,6 @@ class Fiora {
                 path: "/group/members"
                     //            avatar: "http://cr.mdzzapp.com/images/expressions/喷.png"
             }, (result) => {
-                console.log(result);
                 if (result.status === 201) {
                     this.groupMap[groupName] = result.data._id;
                     resolve();
