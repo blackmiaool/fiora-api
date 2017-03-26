@@ -50,7 +50,8 @@ class Fiora {
                 content,
                 avatar,
                 name: username,
-                time: (new Date(createTime)).getTime()
+                time: (new Date(createTime)).getTime(),
+                room
             }
             this.listeners[room].forEach(function (cb) {
                 cb(message);
