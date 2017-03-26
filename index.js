@@ -5,7 +5,8 @@ class Fiora {
         const socket = require('socket.io-client')('http://suisuijiang.com:10615/');
         this.socket = socket;
         this.name = "fiora";
-
+        this.main = "fiora";
+        this.context = {};
         this.log = (msg) => {
             if (log) {
                 console.log(this.name + " " + msg);
