@@ -21,7 +21,7 @@ class Fiora {
         socket.on('disconnect', () => {
             this.log("disconnect");
             this.clearReconnect();
-            if (this.loginInfo.username) {
+            if (this.loginInfo && this.loginInfo.username) {
                 this.reconnectInterval = setInterval(() => {
                     this.log("reconnect");
                     this.login(this.loginInfo.username, this.loginInfo.password);
