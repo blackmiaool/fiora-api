@@ -20,6 +20,13 @@ class Fiora {
         });
         socket.on('disconnect', () => {
             this.log("disconnect");
+            this.clearReconnect();
+            if (this.loginInfo.username) {
+                this.reconnectInterval = setInterval(() => {
+                    this.log("reconnect");
+                    this.login(this.loginInfo.username, this.loginInfo.password);
+                }, 5000);
+            }
         });
         socket.on('groupMessage', ({
             type,
@@ -64,7 +71,17 @@ class Fiora {
             groupMap: {},
         });
     }
+    clearReconnect() {
+        if (this.reconnectInterval) {
+            clearInterval(this.reconnectInterval);
+            this.reconnectInterval = 0;
+        }
+    }
     login(username, password) {
+        this.loginInfo = {
+            username,
+            password
+        };
         return new Promise((resolve, reject) => {
             this.socket.emit("message", {
                 data: {
@@ -79,7 +96,7 @@ class Fiora {
                     result.data.user.groups.forEach((group) => {
                         this.groupMap[group.name] = group._id;
                     });
-
+                    this.clearReconnect();
                     resolve();
                 } else {
                     reject(result.data);
