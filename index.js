@@ -2,7 +2,7 @@ class Fiora {
     constructor({
         log = true
     }) {
-        const socket = require('socket.io-client')('http://suisuijiang.com:10615/');
+        const socket = require('socket.io-client')('http://suisuijiang.com:50800/');
         this.socket = socket;
         this.name = "fiora";
         this.main = "fiora";
