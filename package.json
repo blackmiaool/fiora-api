@@ -1,19 +1,19 @@
 {
-    "name": "fiora-api",
-    "version": "1.0.8",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/blackmiaool/fiora-api.git"
-    },
-    "author": "blackmiaool",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/blackmiaool/fiora-api/issues"
-    },
-    "homepage": "https://github.com/blackmiaool/fiora-api#readme"
+  "name": "fiora-api",
+  "version": "1.0.9",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackmiaool/fiora-api.git"
+  },
+  "author": "blackmiaool",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blackmiaool/fiora-api/issues"
+  },
+  "homepage": "https://github.com/blackmiaool/fiora-api#readme"
 }
