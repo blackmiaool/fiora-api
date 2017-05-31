@@ -2,7 +2,7 @@ class Fiora {
     constructor({
         log = true
     }) {
-        const socket = require('socket.io-client')('http://suisuijiang.com:50800/');
+        const socket = require('socket.io-client')('https://fiora.suisuijiang.com/');
         this.socket = socket;
         this.name = "fiora";
         this.main = "fiora";
@@ -77,7 +77,7 @@ class Fiora {
             this.reconnectInterval = 0;
         }
     }
-    login(username, password) {
+    login(username, password) {       
         this.loginInfo = {
             username,
             password
@@ -105,7 +105,7 @@ class Fiora {
         });
     }
     send(room, type, content) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {           
             this.socket.emit("message", {
                 method: "POST",
                 path: "/groupMessage",
